@@ -1,10 +1,12 @@
-package com.shariarunix.bmicalculator;
+package com.shariarunix.bmicalculator.Fragment;
 
 import static com.shariarunix.bmicalculator.StaticName.SHARED_PREF_NAME;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shariarunix.bmicalculator.Dialog.BmiOutputDialog;
 import com.shariarunix.bmicalculator.Dialog.NoInputDialog;
+import com.shariarunix.bmicalculator.R;
 
 import java.text.DecimalFormat;
 
@@ -438,6 +441,9 @@ public class HomeFragment extends Fragment {
             AppCompatActivity myActivity = (AppCompatActivity) getActivity();
             // Floating Action Button for Calculating BMI
             FloatingActionButton calcBMI = myActivity.findViewById(R.id.f_btn_bmi_calc);
+
+            calcBMI.setBackgroundTintList(ColorStateList.valueOf(myActivity.getColor(R.color.blue)));
+            calcBMI.setImageResource(R.drawable.bmi_calc_logo);
 
             calcBMI.setOnClickListener(new View.OnClickListener() {
                 @Override
