@@ -1,13 +1,12 @@
 package com.shariarunix.bmicalculator;
 
+import static com.shariarunix.bmicalculator.StaticName.SHARED_PREF_NAME;
+
 import android.annotation.SuppressLint;
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,12 +14,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,7 +25,6 @@ import com.shariarunix.bmicalculator.Dialog.BmiOutputDialog;
 import com.shariarunix.bmicalculator.Dialog.NoInputDialog;
 
 import java.text.DecimalFormat;
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -52,10 +48,15 @@ public class HomeFragment extends Fragment {
     Handler myHandler = new Handler();
     TextView txtShowWeightKg, txtShowHeightFT;
 
+    SharedPreferences sharedPreferences;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String userName = sharedPreferences.getString("userName", null);
 
         TextView txtShowAge = view.findViewById(R.id.txt_show_age);
         ImageView imgBtnAgeDec = view.findViewById(R.id.img_btn_age_dec);
@@ -454,10 +455,31 @@ public class HomeFragment extends Fragment {
                         double userBMIDouble = userWeight / Math.pow(userHeight, 2);
                         String userBMI = formatDouble(userBMIDouble);
 
-                        // TODO
+                        String userBmiResult = "", userSuggestion = "", userMessage = "";
+                        int userConsiderAbleWeight = userWeight - (int) Math.round(Math.pow(userHeight, 2) * 23);
 
-                        BmiOutputDialog bmiDialog = new BmiOutputDialog(myActivity,"Shariar, Your Bmi", userBMI, "Normal Weight", "BONK");
-                        bmiDialog.setContentView(R.layout.dialog_bmi_output);
+                        if (userBMIDouble < 18.5) {
+                            userBmiResult = "Under Weight";
+                            userConsiderAbleWeight = (int) Math.round(Math.pow(userHeight, 2) * 19) - userWeight;
+                            userSuggestion = "To improve your health, aim to gain about '" + userConsiderAbleWeight + "' kilograms through a balanced and nutritious lifestyle.";
+                        } else if (userBMIDouble < 25) {
+                            userBmiResult = "Normal Weight";
+                            userSuggestion = "Maintain your current weight by continuing a balanced diet and regular physical activity";
+                        } else if (userBMIDouble < 30) {
+                            userBmiResult = "Over Weight";
+                            userSuggestion = "To lead a healthier lifestyle, consider losing around '" + userConsiderAbleWeight + "' kilograms of weight.";
+                        } else {
+                            userBmiResult = "Obesity";
+                            userSuggestion = "To lead a healthier lifestyle, consider losing around '" + userConsiderAbleWeight + "' kilograms of weight and seek guidance from healthcare professionals.";
+                        }
+
+                        if (userName == null) {
+                            userMessage = "Your Bmi is";
+                        } else {
+                            userMessage += ", Your Bmi is";
+                        }
+
+                        BmiOutputDialog bmiDialog = new BmiOutputDialog(myActivity, userMessage, userBMI, userBmiResult, userSuggestion);
                         bmiDialog.show();
                     } else {
                         NoInputDialog noInputDialog = new NoInputDialog(myActivity, "Please\nchoose your gender");

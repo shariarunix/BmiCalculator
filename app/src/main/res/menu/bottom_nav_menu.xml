@@ -13,8 +13,8 @@
         android:title="" />
 
     <item
-        android:id="@+id/_profile"
-        android:icon="@drawable/ic_profile"
-        android:title="Profile"
+        android:id="@+id/_activity"
+        android:icon="@drawable/ic_activity"
+        android:title="Activity"
         tools:ignore="HardcodedText" />
 </menu>
