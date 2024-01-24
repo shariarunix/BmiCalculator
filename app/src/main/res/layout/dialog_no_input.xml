@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/white_bg"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_info"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/dialog_no_input_txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:lineHeight="34sp"
+        android:text="_title"
+        android:textColor="@color/blue"
+        android:textSize="32sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dialog_no_input_btn_pos"
+        style="@style/borderless_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/blue_btn_bg"
+        android:fontFamily="@font/ubuntu_regular"
+        android:text="Okay"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</LinearLayout>
