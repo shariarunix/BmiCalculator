@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.shariarunix.bmicalculator.Database.BmiResultModel;
 import com.shariarunix.bmicalculator.Dialog.BmiOutputDialog;
 import com.shariarunix.bmicalculator.Dialog.NoInputDialog;
 import com.shariarunix.bmicalculator.R;
@@ -485,7 +486,18 @@ public class HomeFragment extends Fragment {
                             userMessage += ", Your Bmi is";
                         }
 
-                        BmiOutputDialog bmiDialog = new BmiOutputDialog(myActivity, userMessage, userBMI, userBmiResult, userSuggestion);
+                        BmiOutputDialog bmiDialog = new BmiOutputDialog(myActivity,
+                                                        userMessage,
+                                                        userBMI,
+                                                        userBmiResult,
+                                                        userSuggestion,
+                                                        new BmiResultModel(userGender,
+                                                            userHeightFT,
+                                                            userHeightIN,
+                                                            userWeightKG,
+                                                            userWeightGM,
+                                                            userAge,
+                                                            userBMI));
                         bmiDialog.show();
                     } else {
                         NoInputDialog noInputDialog = new NoInputDialog(myActivity, "Please\nchoose your gender");

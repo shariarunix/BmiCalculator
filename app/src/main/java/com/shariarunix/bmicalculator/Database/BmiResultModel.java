@@ -1,8 +1,10 @@
 package com.shariarunix.bmicalculator.Database;
 
+import androidx.annotation.NonNull;
+
 public class BmiResultModel {
-    int userGender, userHeightFt, userHeightIn, userWeightKg, userWeightGm, userAge;
-    String userBmi;
+    private int userGender, userHeightFt, userHeightIn, userWeightKg, userWeightGm, userAge, _id;
+    private String userBmi;
 
     public BmiResultModel() {
     }
@@ -22,6 +24,33 @@ public class BmiResultModel {
         this.userWeightGm = userWeightGm;
         this.userAge = userAge;
         this.userBmi = userBmi;
+    }
+
+    public BmiResultModel(int _id,
+                          int userGender,
+                          int userAge,
+                          int userHeightFt,
+                          int userHeightIn,
+                          int userWeightKg,
+                          int userWeightGm,
+                          String userBmi) {
+
+        this.userGender = userGender;
+        this.userHeightFt = userHeightFt;
+        this.userHeightIn = userHeightIn;
+        this.userWeightKg = userWeightKg;
+        this.userWeightGm = userWeightGm;
+        this.userAge = userAge;
+        this._id = _id;
+        this.userBmi = userBmi;
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
     }
 
     public int getUserGender() {

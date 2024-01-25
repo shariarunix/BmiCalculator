@@ -9,28 +9,36 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.shariarunix.bmicalculator.Database.BmiResultModel;
+import com.shariarunix.bmicalculator.Database.BmiTableClass;
 import com.shariarunix.bmicalculator.R;
 
 import java.util.Objects;
 
 public class BmiOutputDialog extends Dialog {
     String userMessage, userBmi, userBmiResult, userSuggestion;
+    BmiResultModel bmiResultModel;
+    Context context;
 
     public BmiOutputDialog(@NonNull Context context,
                            String userMessage,
                            String userBmi,
                            String userBmiResult,
-                           String userSuggestion) {
+                           String userSuggestion,
+                           BmiResultModel bmiResultModel) {
 
         super(context);
+        this.context = context;
         this.userMessage = userMessage;
         this.userBmi = userBmi;
         this.userBmiResult = userBmiResult;
         this.userSuggestion = userSuggestion;
+        this.bmiResultModel = bmiResultModel;
     }
 
     @Override
@@ -58,6 +66,18 @@ public class BmiOutputDialog extends Dialog {
         btnDialogBmiPos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //noinspection resource
+                BmiTableClass bmiTableClass = new BmiTableClass(context);
+
+                long rowID = bmiTableClass.insertBmiResult(bmiResultModel);
+
+                if (rowID > 0) {
+                    Toast.makeText(context, "Result Saved", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Ups, Got an error", Toast.LENGTH_SHORT).show();
+                }
+
                 dismiss();
             }
         });
