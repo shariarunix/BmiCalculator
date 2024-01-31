@@ -7,6 +7,7 @@ import static com.shariarunix.bmicalculator.StaticName.BMI_USER_BMI;
 import static com.shariarunix.bmicalculator.StaticName.BMI_USER_GENDER;
 import static com.shariarunix.bmicalculator.StaticName.BMI_USER_HEIGHT_FT;
 import static com.shariarunix.bmicalculator.StaticName.BMI_USER_HEIGHT_IN;
+import static com.shariarunix.bmicalculator.StaticName.BMI_USER_TIME;
 import static com.shariarunix.bmicalculator.StaticName.BMI_USER_WEIGHT_GM;
 import static com.shariarunix.bmicalculator.StaticName.BMI_USER_WIGHT_KG;
 import static com.shariarunix.bmicalculator.StaticName.DB_NAME;
@@ -21,13 +22,14 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private Context context;
+    Context context;
 
     private static final String BMI_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + BMI_TABLE +
             "(" + BMI_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             BMI_USER_AGE + " INTEGER, " + BMI_USER_GENDER + " INTEGER, " +
             BMI_USER_WIGHT_KG + " INTEGER, " + BMI_USER_WEIGHT_GM + " INTEGER, " +
-            BMI_USER_HEIGHT_FT + " INTEGER, " + BMI_USER_HEIGHT_IN + " INTEGER, " + BMI_USER_BMI + " TEXT);";
+            BMI_USER_HEIGHT_FT + " INTEGER, " + BMI_USER_HEIGHT_IN + " INTEGER, " +
+            BMI_USER_TIME + " TEXT, " + BMI_USER_BMI + " TEXT);";
 
     public DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -38,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         try {
             db.execSQL(BMI_TABLE_SQL);
-        } catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(context, "Exception : " + e, Toast.LENGTH_SHORT).show();
         }
     }

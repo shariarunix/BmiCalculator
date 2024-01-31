@@ -487,17 +487,18 @@ public class HomeFragment extends Fragment {
                         }
 
                         BmiOutputDialog bmiDialog = new BmiOutputDialog(myActivity,
-                                                        userMessage,
-                                                        userBMI,
-                                                        userBmiResult,
-                                                        userSuggestion,
-                                                        new BmiResultModel(userGender,
-                                                            userHeightFT,
-                                                            userHeightIN,
-                                                            userWeightKG,
-                                                            userWeightGM,
-                                                            userAge,
-                                                            userBMI));
+                                userMessage,
+                                userBMI,
+                                userBmiResult,
+                                userSuggestion,
+                                new BmiResultModel(userGender,
+                                        userHeightFT,
+                                        userHeightIN,
+                                        userWeightKG,
+                                        userWeightGM,
+                                        userAge,
+                                        String.valueOf(System.currentTimeMillis()),
+                                        userBMI));
                         bmiDialog.show();
                     } else {
                         NoInputDialog noInputDialog = new NoInputDialog(myActivity, "Please\nchoose your gender");

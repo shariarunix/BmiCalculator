@@ -8,6 +8,7 @@ public class StaticName {
     public static final String BMI_ID = "_id";
     public static final String BMI_USER_AGE = "User_Age";
     public static final String BMI_USER_BMI = "User_Bmi";
+    public static final String BMI_USER_TIME = "User_Result_Time";
     public static final String BMI_USER_GENDER = "User_Gender";
     public static final String BMI_USER_WIGHT_KG = "User_Weight_Kg";
     public static final String BMI_USER_WEIGHT_GM = "User_Weight_Gm";

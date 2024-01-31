@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 public class BmiResultModel {
     private int userGender, userHeightFt, userHeightIn, userWeightKg, userWeightGm, userAge, _id;
-    private String userBmi;
+    private String userBmi, userResultTime;
 
     public BmiResultModel() {
     }
@@ -15,6 +15,7 @@ public class BmiResultModel {
                           int userWeightKg,
                           int userWeightGm,
                           int userAge,
+                          String userResultTime,
                           String userBmi) {
 
         this.userGender = userGender;
@@ -23,6 +24,7 @@ public class BmiResultModel {
         this.userWeightKg = userWeightKg;
         this.userWeightGm = userWeightGm;
         this.userAge = userAge;
+        this.userResultTime = userResultTime;
         this.userBmi = userBmi;
     }
 
@@ -33,6 +35,7 @@ public class BmiResultModel {
                           int userHeightIn,
                           int userWeightKg,
                           int userWeightGm,
+                          String userResultTime,
                           String userBmi) {
 
         this.userGender = userGender;
@@ -42,6 +45,7 @@ public class BmiResultModel {
         this.userWeightGm = userWeightGm;
         this.userAge = userAge;
         this._id = _id;
+        this.userResultTime = userResultTime;
         this.userBmi = userBmi;
     }
 
@@ -99,6 +103,14 @@ public class BmiResultModel {
 
     public void setUserAge(int userAge) {
         this.userAge = userAge;
+    }
+
+    public String getUserResultTime() {
+        return userResultTime;
+    }
+
+    public void setUserResultTime(String userResultTime) {
+        this.userResultTime = userResultTime;
     }
 
     public String getUserBmi() {
